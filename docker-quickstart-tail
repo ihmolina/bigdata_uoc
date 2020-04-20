@@ -1,0 +1,55 @@
+cat <<\EOF
+
+Engegant Jupyter Notebook en background ...
+
++------------------------------------------------------------------------------------------------------------------------------+
+| # nohup scl enable rh-python35 "bash -c 'jupyter notebook --ip=0.0.0.0 --port=18888 --allow-root'" &> /var/log/jupyter.out & |
++------------------------------------------------------------------------------------------------------------------------------+
+
+EOF
+
+nohup scl enable rh-python35 "bash -c 'jupyter notebook --ip=0.0.0.0 --port=18888 --allow-root'" &> /var/log/jupyter.out &
+
+cat <<\EOF
+
+Engegant Apache Zeppelin en background ...
+
++---------------------------------------------------------------------------------------------------------------------+
+| # nohup scl enable rh-python35 "bash -c '(cd /zeppelin-0.7.3-bin-all; bin/zeppelin.sh)'" &> /var/log/zeppelin.out & |
++---------------------------------------------------------------------------------------------------------------------+
+
+EOF
+
+nohup scl enable rh-python35 "bash -c '(cd /zeppelin-0.7.3-bin-all; bin/zeppelin.sh)'" &> /var/log/zeppelin.out &
+
+cat <<\EOF
+
+Per iniciar un terminal connectat al contenidor en marxa cal executar la comanda següent:
+
++---------------------------------------------------------------------------------------------------+
+| $ sudo podman exec -it $(sudo podman ps | grep ihmolina/bigdata_uoc | awk '{print $1}') /bin/bash |
++---------------------------------------------------------------------------------------------------+
+
+EOF
+
+cat <<\EOF
+
+Per monitoritzar el log de Jupyter Notebook executeu la comanda següent:
+
++--------------------------------+
+| # tail -f /var/log/jupyter.out |
++--------------------------------+
+
+EOF
+
+cat <<\EOF
+
+Per monitoritzar el log d'Apache Zeppelin executeu la comanda següent:
+
++---------------------------------+
+| # tail -f /var/log/zeppelin.out |
++---------------------------------+
+
+EOF
+
+exec bash
