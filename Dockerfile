@@ -1,4 +1,4 @@
-FROM aperezgari/bigdata_uoc
+FROM aperezgari/bigdata_uoc:latest
 
 RUN head -n -1 /usr/bin/docker-quickstart > /tmp/docker-quickstart
 
